@@ -6,6 +6,10 @@ body {
 }
 
 header {
+	background-image: url("images/start.jpg");
+	background-repeat: no-repeat; /* Zapobiega powtarzaniu się tła */
+	background-size: cover; /* Dopasowuje tło do rozmiaru elementu */
+	background-position: center; /* Ustawia pozycję tła na środku */
 	background-color: #444444;
 	padding: 20px;
 	text-align: center;
@@ -87,7 +91,7 @@ main {
 
 .product p {
 	margin: 5px 0;
-	color: #666;
+	color: #aeaeae;
 }
 
 .product .price {
