@@ -6,15 +6,16 @@ body {
 }
 
 header {
-	background-color: #ffcc80;
+	background-color: #444444;
 	padding: 20px;
 	text-align: center;
+	border-bottom: 4px solid #333333;
 }
 
 h1 {
 	font-size: 2.5rem;
 	margin: 0;
-	color: #333;
+	color: #ffffff;
 }
 
 #language-switcher {
@@ -28,7 +29,7 @@ h1 {
 }
 
 nav {
-	background-color: #ff7043;
+	background-color: #333333;
 	padding: 10px;
 	text-align: center;
 }
@@ -44,7 +45,7 @@ nav ul li {
 }
 
 nav ul li a {
-	color: #fff;
+	color: #ffffff;
 	text-decoration: none;
 	padding: 5px 10px;
 	border-radius: 5px;
@@ -52,16 +53,20 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-	background-color: #e64a19;
+	background-color: #444444;
 }
 
 main {
 	padding: 20px;
+	background-color: #e0e0e0;
+	color: #333;
+	position: relative;
+	min-height: 100vh;
 }
 
 .product {
 	display: none;
-	background-color: #fff;
+	background-color: #ffffff;
 	border-radius: 5px;
 	padding: 10px;
 	margin-bottom: 20px;
@@ -75,7 +80,7 @@ main {
 }
 
 .product h3 {
-	color: #e64a19;
+	color: #444444;
 	font-size: 1.5rem;
 	margin-top: 0;
 }
@@ -87,13 +92,69 @@ main {
 
 .product .price {
 	font-weight: bold;
+	color: #333333;
 }
+
 #welcome-image {
+	position: relative;
 	text-align: center;
 	margin-top: 20px;
 }
 
 #welcome-image img {
-	max-width: 100%;
+	width: 100%;
 	height: auto;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#welcome-image .overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#welcome-image h2 {
+	font-size: 2.5rem;
+	font-family: "Georgia", serif;
+	text-align: center;
+	padding: 10px 20px;
+	border-radius: 10px;
+}
+
+#dynamic-text {
+	font-size: 2rem;
+	font-family: "Georgia", serif;
+	color: #ffffff;
+	text-align: center;
+	animation: bounce-to-center 2s ease-in-out;
+
+	width: 100%;
+}
+
+@keyframes bounce-to-center {
+	0% {
+		left: -100%;
+	}
+	50% {
+		left: 100%;
+	}
+	60% {
+		left: 50%;
+		transform: translateX(-50%) scale(1.2);
+	}
+	100% {
+		left: 50%;
+		transform: translateX(-50%) scale(1);
+	}
+}
+
+.hidden {
+	display: none;
 }
