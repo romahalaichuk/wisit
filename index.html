@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Restauracja</title>
+		<link rel="stylesheet" href="styles.css" />
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/i18next@21.6.14/dist/umd/i18next.min.js"></script>
+		<script src="./jquery-i18next.min.js"></script>
+		<script src="scripts.js"></script>
+	</head>
+	<body>
+		<header>
+			<h1 data-i18n="restaurant_name">Pizzeria San Giovanni</h1>
+			<div id="language-switcher">
+				<img src="flags/pl.png" alt="Polski" data-lang="pl" />
+				<img src="flags/en.png" alt="English" data-lang="en" />
+				<img src="flags/de.png" alt="Deutsch" data-lang="de" />
+				<img src="flags/es.png" alt="Español" data-lang="es" />
+				<img src="flags/it.png" alt="Italiano" data-lang="it" />
+				<img src="flags/uk.png" alt="Українська" data-lang="uk" />
+				<img src="flags/cz.png" alt="Česky" data-lang="cz" />
+				<img src="flags/fr.png" alt="Français" data-lang="fr" />
+				<img src="flags/ru.png" alt="Русский" data-lang="ru" />
+			</div>
+			<nav id="menu-navigation">
+				<ul>
+					<li>
+						<a href="#" data-category="starters" data-i18n="menu_starters"
+							>Przystawki</a
+						>
+					</li>
+					<li>
+						<a href="#" data-category="pizzas" data-i18n="menu_pizza">Pizze</a>
+					</li>
+					<li>
+						<a href="#" data-category="pastas" data-i18n="menu_pasta"
+							>Makarony</a
+						>
+					</li>
+					<li>
+						<a href="#" data-category="desserts" data-i18n="menu_desserts"
+							>Desery</a
+						>
+					</li>
+					<li>
+						<a href="#" data-category="drinks" data-i18n="menu_drinks"
+							>Napoje</a
+						>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<div id="welcome-image">
+				<img src="images/welcome_pl.jpg" alt="Witamy" />
+			</div>
+			<div id="products-container">
+				<div class="product starters" data-category="starters">
+					<img src="images/focaccia.jpg" alt="Focaccia" />
+					<h3 data-i18n="focaccia">FOCACCIA</h3>
+					<p data-i18n="focaccia_desc">with olive oil, oregano and rosemary</p>
+					<p class="price">16,90 PLN</p>
+				</div>
+				<div class="product pizzas" data-category="pizzas">
+					<img src="images/Margerita-300x300.png" alt="Margherita" />
+					<h3 data-i18n="margherita">MARGHERITA</h3>
+					<p data-i18n="margherita_desc">cheese</p>
+					<p class="price">23,90 PLN</p>
+				</div>
+				<div class="product pastas" data-category="pastas">
+					<img src="images/spaghetti.jpg" alt="Spaghetti" />
+					<h3 data-i18n="spaghetti">SPAGHETTI</h3>
+					<p data-i18n="spaghetti_desc">with tomato sauce</p>
+					<p class="price">34,90 PLN</p>
+				</div>
+				<div class="product desserts" data-category="desserts">
+					<img src="images/tiramisu.jpg" alt="Tiramisu" />
+					<h3 data-i18n="tiramisu">TIRAMISU</h3>
+					<p data-i18n="tiramisu_desc">traditional Italian dessert</p>
+					<p class="price">19,90 PLN</p>
+				</div>
+				<div class="product drinks" data-category="drinks">
+					<img src="images/espresso.jpg" alt="Espresso" />
+					<h3 data-i18n="espresso">ESPRESSO</h3>
+					<p data-i18n="espresso_desc">small, strong coffee</p>
+					<p class="price">7,90 PLN</p>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
