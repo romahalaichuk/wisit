@@ -14,6 +14,7 @@ header {
 	padding: 20px;
 	text-align: center;
 	border-bottom: 4px solid #333333;
+	position: relative;
 }
 
 h1 {
@@ -36,7 +37,7 @@ nav {
 	position: sticky;
 	top: 0;
 	z-index: 1000;
-	background-color: #333333b0;
+	background-color: rgba(51, 51, 51, 0.69);
 	padding: 10px;
 	text-align: center;
 }
@@ -60,7 +61,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-	background-color: #444444;
+	background-color: #666666;
 }
 
 main {
@@ -73,20 +74,9 @@ main {
 	max-height: calc(100vh - 60px);
 }
 
-nav {
-	position: sticky;
-	top: 0;
-	z-index: 1000;
-	background-color: #333333b0;
-	padding: 10px;
-	text-align: center;
-}
-
-/* Pozostała część Twojego CSS bez zmian */
-
 .product {
 	display: none;
-	background-color: #ffffff57;
+	background-color: rgba(255, 255, 255, 0.57);
 	border-radius: 5px;
 	padding: 10px;
 	margin-bottom: 20px;
@@ -119,6 +109,7 @@ nav {
 	position: relative;
 	text-align: center;
 	margin-top: 20px;
+	overflow: hidden;
 }
 
 #welcome-image img {
@@ -130,48 +121,40 @@ nav {
 
 #welcome-image .overlay {
 	position: absolute;
-	top: 0;
+	top: 50%;
 	left: 0;
 	width: 100%;
-	height: 100%;
+	transform: translateY(-50%);
 	background: rgba(0, 0, 0, 0.5);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-#welcome-image h2 {
-	font-size: 2.5rem;
-	font-family: "Georgia", serif;
-	text-align: center;
-	padding: 10px 20px;
-	border-radius: 10px;
-}
-
 #dynamic-text {
-	font-size: 2rem;
+	font-size: 2.5rem;
 	font-family: "Georgia", serif;
 	color: #ffffff;
 	text-align: center;
-	animation: bounce-to-center 2s ease-in-out;
-
-	width: 100%;
+	padding: 10px 20px;
+	border-radius: 10px;
+	position: fixed;
+	top: -100px;
+	left: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.7);
+	animation: bounce-to-center 1s ease forwards;
 }
 
 @keyframes bounce-to-center {
 	0% {
-		left: -100%;
-	}
-	50% {
-		left: 100%;
+		transform: translateY(-100%);
 	}
 	60% {
-		left: 50%;
-		transform: translateX(-50%) scale(1.2);
+		transform: translateY(50%);
 	}
 	100% {
-		left: 50%;
-		transform: translateX(-50%) scale(1);
+		transform: translateY(0);
 	}
 }
 

@@ -79,14 +79,14 @@ $(document).ready(function () {
 			product.style.display = "block";
 		});
 	}
-	$(document).ready(function () {
-		// Ustawienia animacji dynamicznego tekstu
-		var dynamicText = $("#dynamic-text");
-		dynamicText.animate({ left: "100%" }, 1000, function () {
-			$(this).css("left", "50%");
-		});
 
-		// Funkcja przełączania widoczności produktów
+	document.addEventListener("DOMContentLoaded", function () {
+		var dynamicText = document.getElementById("dynamic-text");
+
+		dynamicText.classList.remove("hidden");
+	});
+
+	$(document).ready(function () {
 		$("#menu-navigation a").on("click", function (e) {
 			e.preventDefault();
 			var category = $(this).data("category");
