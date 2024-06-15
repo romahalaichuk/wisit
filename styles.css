@@ -7,9 +7,9 @@ body {
 
 header {
 	background-image: url("images/start.jpg");
-	background-repeat: no-repeat; /* Zapobiega powtarzaniu się tła */
-	background-size: cover; /* Dopasowuje tło do rozmiaru elementu */
-	background-position: center; /* Ustawia pozycję tła na środku */
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
 	background-color: #444444;
 	padding: 20px;
 	text-align: center;
@@ -27,12 +27,15 @@ h1 {
 }
 
 #language-switcher img {
-	width: 30px;
+	width: 60px;
 	cursor: pointer;
 	margin-right: 5px;
 }
 
 nav {
+	position: sticky;
+	top: 0;
+	z-index: 1000;
 	background-color: #333333b0;
 	padding: 10px;
 	text-align: center;
@@ -66,7 +69,20 @@ main {
 	color: #333;
 	position: relative;
 	min-height: 100vh;
+	overflow-y: auto;
+	max-height: calc(100vh - 60px);
 }
+
+nav {
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	background-color: #333333b0;
+	padding: 10px;
+	text-align: center;
+}
+
+/* Pozostała część Twojego CSS bez zmian */
 
 .product {
 	display: none;
