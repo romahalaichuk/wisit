@@ -1,3 +1,10 @@
+document.addEventListener("DOMContentLoaded", function () {
+	var refreshImage = document.getElementById("refresh-image");
+
+	refreshImage.addEventListener("click", function () {
+		location.reload();
+	});
+});
 $(document).ready(function () {
 	i18next.init(
 		{

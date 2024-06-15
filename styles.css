@@ -88,7 +88,12 @@ main {
 	border-radius: 5px;
 	margin-bottom: 10px;
 }
-
+.ho {
+	padding-right: 180px;
+	width: 45px;
+	cursor: pointer;
+	margin-right: 5px;
+}
 .product h3 {
 	color: #101010;
 	font-size: 1.5rem;
