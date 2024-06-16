@@ -4,7 +4,12 @@ document.addEventListener("DOMContentLoaded", function () {
 	refreshImage.addEventListener("click", function () {
 		location.reload();
 	});
+
+	// Usunięcie klasy hidden z dynamicznego tekstu po załadowaniu strony
+	var dynamicText = document.getElementById("dynamic-text");
+	dynamicText.classList.remove("hidden");
 });
+
 $(document).ready(function () {
 	i18next.init(
 		{
@@ -87,19 +92,11 @@ $(document).ready(function () {
 		});
 	}
 
-	document.addEventListener("DOMContentLoaded", function () {
-		var dynamicText = document.getElementById("dynamic-text");
-
-		dynamicText.classList.remove("hidden");
-	});
-
-	$(document).ready(function () {
-		$("#menu-navigation a").on("click", function (e) {
-			e.preventDefault();
-			var category = $(this).data("category");
-			$(".product").hide();
-			$("." + category).fadeIn();
-			$("#welcome-image").hide();
-		});
+	$("#menu-navigation a").on("click", function (e) {
+		e.preventDefault();
+		var category = $(this).data("category");
+		$(".product").hide();
+		$("." + category).fadeIn();
+		$("#welcome-image").hide();
 	});
 });
