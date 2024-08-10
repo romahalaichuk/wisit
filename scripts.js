@@ -1,16 +1,41 @@
 document.addEventListener("DOMContentLoaded", function () {
+	// Obsługa odświeżania obrazka
 	var refreshImage = document.getElementById("refresh-image");
-
 	refreshImage.addEventListener("click", function () {
 		location.reload();
 	});
 
-	// Usunięcie klasy hidden z dynamicznego tekstu po załadowaniu strony
+	// Wyświetlenie dynamicznego tekstu
 	var dynamicText = document.getElementById("dynamic-text");
 	dynamicText.classList.remove("hidden");
-});
 
-$(document).ready(function () {
+	// Implementacja przesuwania obrazków dotykiem
+	const images = document.querySelectorAll(".product img");
+	images.forEach((image) => {
+		let isDragging = false;
+		let startX, scrollLeft;
+
+		image.addEventListener("touchstart", (e) => {
+			isDragging = true;
+			startX = e.touches[0].pageX - image.offsetLeft;
+			scrollLeft = image.scrollLeft;
+			image.style.cursor = "grabbing";
+		});
+
+		image.addEventListener("touchend", () => {
+			isDragging = false;
+			image.style.cursor = "grab";
+		});
+
+		image.addEventListener("touchmove", (e) => {
+			if (!isDragging) return;
+			const x = e.touches[0].pageX - image.offsetLeft;
+			const walk = (x - startX) * 2; // prędkość przesuwania
+			image.scrollLeft = scrollLeft - walk;
+		});
+	});
+
+	// Konfiguracja i18next i obsługa zmiany języka
 	i18next.init(
 		{
 			lng: "pl",

@@ -96,10 +96,30 @@ main {
 	transition: transform 0.3s;
 }
 
+@keyframes float {
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-5px); /* Lekkie uniesienie */
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
 .product img {
 	max-width: 100%;
 	border-radius: 10px;
 	margin-bottom: 10px;
+	animation: float 6s ease-in-out infinite; /* Delikatniejsza animacja */
+	transition: transform 0.3s ease;
+	will-change: transform;
+	cursor: grab;
+}
+
+.product img:active {
+	cursor: grabbing;
 }
 
 .product:hover {
