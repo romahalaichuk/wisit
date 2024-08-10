@@ -124,4 +124,59 @@ document.addEventListener("DOMContentLoaded", function () {
 		$("." + category).fadeIn();
 		$("#welcome-image").hide();
 	});
+	const carouselWrapper = document.querySelector(".carousel-wrapper");
+	const carouselItems = document.querySelectorAll(".carousel-item");
+
+	let currentIndex = 0;
+
+	function updateCarousel() {
+		carouselItems.forEach((item, index) => {
+			item.classList.remove("active");
+			if (index === currentIndex) {
+				item.classList.add("active");
+			}
+		});
+
+		const offset = -currentIndex * 100;
+		carouselWrapper.style.transform = `translateX(${offset}%)`;
+	}
+
+	function handleSwipe(direction) {
+		if (direction === "left") {
+			currentIndex++;
+			if (currentIndex >= carouselItems.length) {
+				currentIndex = 0;
+			}
+		} else if (direction === "right") {
+			currentIndex--;
+			if (currentIndex < 0) {
+				currentIndex = carouselItems.length - 1;
+			}
+		}
+		updateCarousel();
+	}
+
+	let startX,
+		isDragging = false;
+
+	carouselWrapper.addEventListener("touchstart", (e) => {
+		isDragging = true;
+		startX = e.touches[0].clientX;
+	});
+
+	carouselWrapper.addEventListener("touchend", (e) => {
+		if (!isDragging) return;
+		isDragging = false;
+		const endX = e.changedTouches[0].clientX;
+		const diff = startX - endX;
+
+		if (diff > 50) {
+			handleSwipe("left");
+		} else if (diff < -50) {
+			handleSwipe("right");
+		}
+	});
+
+	// Ustawienie początkowego stanu karuzeli
+	updateCarousel();
 });
