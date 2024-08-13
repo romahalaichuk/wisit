@@ -237,25 +237,28 @@ main {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 400px; /* Wysokość karuzeli */
+	height: 400px;
 	touch-action: pan-y;
+	perspective: 1200px; /* Dodatkowo ustalamy perspektywę */
 }
 
 .carousel-wrapper {
 	display: flex;
-	transition: transform 0.5s ease-in-out;
-	will-change: transform;
-}
-
-.carousel-slide {
-	display: flex;
+	transform-style: preserve-3d;
+	width: 100%;
+	transform: rotateY(0deg);
+	transition: transform 1s ease;
 }
 
 .carousel-item {
-	min-width: 100%;
-	text-align: center;
-	opacity: 0;
-	transition: opacity 0.5s ease;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform-origin: center;
+	transform-style: preserve-3d;
+	backface-visibility: hidden;
+	opacity: 0.6;
+	transition: transform 1s ease, opacity 1s ease;
 }
 
 .carousel-item.active {
@@ -263,7 +266,7 @@ main {
 }
 
 .carousel-image {
-	max-width: 80%;
+	max-width: 100%;
 	max-height: 250px;
 	border-radius: 10px;
 	margin-bottom: 10px;
@@ -273,9 +276,11 @@ main {
 	font-size: 18px;
 	font-weight: bold;
 	margin-bottom: 5px;
+	text-align: center;
 }
 
 .carousel-description {
 	font-size: 14px;
 	color: #666;
+	text-align: center;
 }

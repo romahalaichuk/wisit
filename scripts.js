@@ -1,15 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
-	// Obsługa odświeżania obrazka
+	// Funkcja odświeżania strony
 	var refreshImage = document.getElementById("refresh-image");
 	refreshImage.addEventListener("click", function () {
 		location.reload();
 	});
 
-	// Wyświetlenie dynamicznego tekstu
+	// Wyświetlanie dynamicznego tekstu
 	var dynamicText = document.getElementById("dynamic-text");
 	dynamicText.classList.remove("hidden");
 
-	// Implementacja przesuwania obrazków dotykiem
+	// Obsługa przeciągania obrazów produktów
 	const images = document.querySelectorAll(".product img");
 	images.forEach((image) => {
 		let isDragging = false;
@@ -30,12 +30,12 @@ document.addEventListener("DOMContentLoaded", function () {
 		image.addEventListener("touchmove", (e) => {
 			if (!isDragging) return;
 			const x = e.touches[0].pageX - image.offsetLeft;
-			const walk = (x - startX) * 2; // prędkość przesuwania
+			const walk = (x - startX) * 2;
 			image.scrollLeft = scrollLeft - walk;
 		});
 	});
 
-	// Konfiguracja i18next i obsługa zmiany języka
+	// Inicjalizacja i18next i załadowanie plików tłumaczeń
 	i18next.init(
 		{
 			lng: "pl",
@@ -98,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 	);
 
+	// Aktualizacja tekstów na stronie
 	function updateTexts() {
 		document.querySelectorAll("[data-i18n]").forEach((element) => {
 			const key = element.getAttribute("data-i18n");
@@ -105,6 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	}
 
+	// Wyświetlanie produktów na podstawie wybranej kategorii
 	function showProducts(category) {
 		const products = document.querySelectorAll(".product");
 		products.forEach((product) => {
@@ -117,6 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	}
 
+	// Przełączanie kategorii produktów
 	$("#menu-navigation a").on("click", function (e) {
 		e.preventDefault();
 		var category = $(this).data("category");
@@ -124,59 +127,46 @@ document.addEventListener("DOMContentLoaded", function () {
 		$("." + category).fadeIn();
 		$("#welcome-image").hide();
 	});
+
+	// Karuzela 3D
 	const carouselWrapper = document.querySelector(".carousel-wrapper");
 	const carouselItems = document.querySelectorAll(".carousel-item");
-
 	let currentIndex = 0;
+	const totalItems = carouselItems.length;
+	const angle = 360 / totalItems;
+	let isDragging = false;
+	let startX,
+		currentRotate = 0;
 
 	function updateCarousel() {
+		carouselWrapper.style.transform = `rotateY(${currentRotate}deg)`;
 		carouselItems.forEach((item, index) => {
-			item.classList.remove("active");
-			if (index === currentIndex) {
-				item.classList.add("active");
-			}
+			const rotation = index * angle;
+			item.style.transform = `rotateY(${rotation}deg) translateZ(300px)`;
+			item.style.opacity = index === currentIndex ? 1 : 0.6;
 		});
-
-		const offset = -currentIndex * 100;
-		carouselWrapper.style.transform = `translateX(${offset}%)`;
 	}
 
-	function handleSwipe(direction) {
-		if (direction === "left") {
-			currentIndex++;
-			if (currentIndex >= carouselItems.length) {
-				currentIndex = 0;
-			}
-		} else if (direction === "right") {
-			currentIndex--;
-			if (currentIndex < 0) {
-				currentIndex = carouselItems.length - 1;
-			}
-		}
+	function handleSwipe(diff) {
+		currentRotate += diff / 2; // Zwiększona reakcja na ruch palca
 		updateCarousel();
 	}
-
-	let startX,
-		isDragging = false;
 
 	carouselWrapper.addEventListener("touchstart", (e) => {
 		isDragging = true;
 		startX = e.touches[0].clientX;
 	});
 
-	carouselWrapper.addEventListener("touchend", (e) => {
-		if (!isDragging) return;
+	carouselWrapper.addEventListener("touchend", () => {
 		isDragging = false;
-		const endX = e.changedTouches[0].clientX;
-		const diff = startX - endX;
-
-		if (diff > 50) {
-			handleSwipe("left");
-		} else if (diff < -50) {
-			handleSwipe("right");
-		}
 	});
 
-	// Ustawienie początkowego stanu karuzeli
+	carouselWrapper.addEventListener("touchmove", (e) => {
+		if (!isDragging) return;
+		const diffX = e.touches[0].clientX - startX;
+		startX = e.touches[0].clientX;
+		handleSwipe(diffX);
+	});
+
 	updateCarousel();
 });
